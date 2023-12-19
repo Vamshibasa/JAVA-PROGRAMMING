@@ -1,0 +1,39 @@
+class MyThread extends Thread {
+    @Override
+    public void run() {
+        try {
+            // Simulating some work
+            sleep(500);
+            System.out.println(Thread.currentThread().getName() + " is running");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+public class ThreadExample {
+    public static void main(String[] args) {
+        try {
+            // Creating threads
+            MyThread thread1 = new MyThread();
+            MyThread thread2 = new MyThread();
+            MyThread thread3 = new MyThread();
+
+            // Starting threads after 500ms
+            thread1.start();
+            thread1.join(); // Waits for thread1 to finish before proceeding
+
+            Thread.sleep(500); // Adding an additional delay
+
+            thread2.start();
+            thread2.join(); // Waits for thread2 to finish before proceeding
+
+            Thread.sleep(500); // Adding an additional delay
+
+            thread3.start();
+            thread3.join(); // Waits for thread3 to finish before proceeding
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
